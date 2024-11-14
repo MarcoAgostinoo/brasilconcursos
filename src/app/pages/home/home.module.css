@@ -1,0 +1,113 @@
+/* Styles gerais */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.firstsection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.bannertop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  height: 300px;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.bannertopleft {
+  position: relative;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.bannertopright {
+  width: 55%;
+  padding-left: 20px;
+}
+
+.bannertop h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.firstsection a {
+  text-decoration: none;
+  /* Remove o sublinhado do link */
+}
+
+.cardsfirstsection {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  height: 1000px;
+  width: 100%;
+}
+
+/* Responsividade: Ajustes para telas menores */
+@media (max-width: 1024px) {
+  .sectionone {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 colunas em tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionone {
+    grid-template-columns: 1fr;
+    /* 1 coluna em celulares */
+    height: auto;
+    gap: 15px;
+    height: auto;
+  }
+
+  .bannertop {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .bannertopleft,
+  .bannertopright {
+    width: 100%;
+    height: 200px;
+  }
+
+  .bannertop h2 {
+    font-size: 1.2rem;
+    /* Ajuste do título em telas menores */
+  }
+
+  .sectionone {
+    gap: 15px;
+    height: auto;
+  }
+
+  /* Ajuste no layout do card */
+  .card {
+    width: 90%;
+    height: 400px;
+  }
+
+  .cardsfirstsection {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+    padding: 0px;
+  }
+}

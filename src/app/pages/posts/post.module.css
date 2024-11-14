@@ -1,0 +1,112 @@
+/* Styles gerais */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Corrigido de 10 0% para 100% */
+    padding: 20px; /* Adicionado para dar espaçamento interno */
+    box-sizing: border-box; /* Garantir que o padding não aumente a largura total */
+}
+
+.firstsection h1 {
+    font-weight: 500;
+    width: 80;
+}
+
+.firstsection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Limitar a largura máxima para melhor legibilidade */
+    margin: 30px 0;
+}
+
+.bannertop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adicionado para espaçamento entre banners */
+}
+.bannertop a {
+
+}
+
+.firstbanner {
+    position: relative; /* Necessário para Image com layout="fill" */
+    width: 100%;
+    height: 400px; /* Ajustar conforme necessário */
+    border-radius: 10px;
+    overflow: hidden; /* Para aplicar o border-radius na imagem */
+}
+
+.bannerbottom {
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9; /* Adicionado fundo para destaque */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adicionado sombra para profundidade */
+}
+
+.bannerbottom h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.bannerbottom p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.bannerbottom div {
+    display: flex;
+    font-size: 0.875rem;
+    color: #777;
+}
+
+.autoranddata {
+    display: flex;
+    justify-content: first baseline;
+    flex-direction: column;
+        line-height: 1;
+}
+
+
+/* Responsividade: Ajustes para telas menores */
+@media (max-width: 768px) {
+    .firstbanner {
+        height: 200px; /* Reduzir altura para telas menores */
+    }
+    
+    .bannerbottom h2 {
+        font-size: 1.2rem; /* Ajuste do título em telas menores */
+    }
+
+    .bannerbottom p {
+        font-size: 0.9rem; /* Ajuste do texto em telas menores */
+    }
+
+    .firstsection {
+        margin: 15px 0; /* Reduzir margens para telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .firstbanner {
+        height: 150px; /* Ainda menor para dispositivos móveis */
+    }
+
+    .bannerbottom {
+        padding: 15px;
+    }
+
+    .bannerbottom h2 {
+        font-size: 1rem;
+    }
+
+    .bannerbottom p {
+        font-size: 0.85rem;
+    }
+}

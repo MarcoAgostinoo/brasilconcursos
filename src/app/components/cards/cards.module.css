@@ -1,0 +1,89 @@
+/* Card container */
+.card {
+    width: 100%;
+    height: auto;
+}
+
+/* Seção do Blog */
+.sectionone {
+    gap: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    height: 1000px;
+    width: 100%;
+}
+.sectionone a {
+    text-decoration: none; /* Remove o sublinhado do link */
+}
+
+/* Ajuste no layout do card */
+.card {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Imagem do card */
+.imgcard {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.imgInner {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Texto do card */
+.textcard {
+    width: 96%;
+    height: 52%;
+    padding-left: 20px;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+}
+
+.textcard h2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a 2 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Oculta o texto que ultrapassa o limite de linhas */
+    text-overflow: ellipsis; /* Adiciona '...' ao final do texto quando ele é truncado */
+}
+
+.textcard p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Oculta o texto que ultrapassa o limite de linhas */
+    text-overflow: ellipsis; /* Adiciona '...' ao final do texto quando ele é truncado */
+    margin-top: -10px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .sectionone {
+        grid-template-columns: 1fr; /* 1 coluna em celulares */
+        height: auto;
+        gap: 15px;
+    }
+
+    /* Ajuste no layout do card */
+    .card {
+        width: 90%;
+        height: 400px;
+    }
+}
