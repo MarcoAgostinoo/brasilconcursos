@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "./page.module.css";
 import Home from "./pages/home/page";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Script from 'next/script'; // Import next/script
 
 export default function Index() {
   return (
@@ -33,14 +34,17 @@ export default function Index() {
         {/* Definindo Charset e viewport */}
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        {/* Importando o JavaScript do Bootstrap */}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
       </Head>
 
       <div className={styles.page}>
         <Home />
       </div>
+
+      {/* Load Bootstrap JS asynchronously */}
+      <Script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+        strategy="afterInteractive" 
+      />
     </>
   );
 }
