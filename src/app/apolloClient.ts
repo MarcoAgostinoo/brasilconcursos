@@ -1,10 +1,15 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
 const createApolloClient = () => {
+  const uri = process.env.NEXT_PUBLIC_API_URL;
+  if (!uri) {
+    throw new Error('NEXT_PUBLIC_API_URL is not defined');
+  }
+
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // true para SSR
     link: new HttpLink({
-      uri: 'https://us-west-2.cdn.hygraph.com/content/cm3hotuwz04y906uxd176ipwi/master',
+      uri, // Utiliza a variável de ambiente
     }),
     cache: new InMemoryCache(),
   });
