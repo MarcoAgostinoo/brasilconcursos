@@ -3,9 +3,10 @@
 import React, { useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 
+// Certifique-se de que o servidor GraphQL aceita o argumento orderBy dessa forma
 const GET_ALL_POSTS = gql`
   query GetAllPosts {
-    posts {
+    posts(orderBy: updatedAt_DESC) {
       id
       slug
       subtitle
@@ -32,7 +33,7 @@ interface AllPosts {
       url: string;
     };
     author: {
-      name;
+      name: string;
     };
   }[];
 }

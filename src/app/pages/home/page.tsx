@@ -52,7 +52,7 @@ export default function Home() {
             author={post.author.name}
             createAt={post.updatedAt}
             subtitle={post.subtitle}
-            urlImage={post.coverImage.url} // Passando a URL correta para o componente `Cards`
+            urlImage={post.coverImage.url} 
           />
         ))}
       </div>

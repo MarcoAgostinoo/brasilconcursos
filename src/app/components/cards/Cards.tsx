@@ -28,10 +28,7 @@ export default function Cards({ title, subtitle, author, createAt, urlImage }: C
           <div className={styles.textcard}>
             <h2>{subtitle}</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              itaque vel cupiditate. Nemo, alias blanditiis, deleniti
-              consectetur quam aut doloremque. dolorem quod quia eos sequi acusamus
-              obcaecati! Nobis dolores placeat
+              {title}
             </p>
             <div>
               <p>{author}</p>
