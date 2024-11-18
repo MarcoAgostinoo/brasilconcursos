@@ -1,63 +1,108 @@
-'use client';
-
-import React, { useState } from "react";
+import React from 'react';
 import styles from "./home.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/app/components/header/Header";
 import Cards from "@/app/components/cards/Cards";
-import ClientOnly from "@/app/components/clientcomponent/ClientOnly"; // Certifique-se de que o caminho está correto
+import Empty from "../../components/empty/Empty";
+import { format } from 'date-fns';
+import { ptBR } from "date-fns/locale"; 
+import { gql } from '@apollo/client';
+import { client } from '@/app/apolloClient';
 
-export default function Home() {
-  const [data, setData] = useState(null);
+const GET_ALL_POSTS = gql`
+  query GetAllPosts {
+    posts(orderBy: updatedAt_DESC) {
+      id
+      slug
+      subtitle
+      title
+      updatedAt
+      coverImage {
+        url
+      }
+      author {
+        name
+      }
+    }
+  }
+`;
+
+interface AllPosts {
+  posts: {
+    id: string;
+    slug: string;
+    subtitle: string;
+    title: string;
+    updatedAt: string;
+    coverImage: {
+      url: string;
+    };
+    author: {
+      name: string;
+    };
+  }[];
+}
+
+async function fetchData() {
+  const { data } = await client.query({ query: GET_ALL_POSTS });
+  return data.posts;
+}
+
+export default async function Home() {
+  const posts = await fetchData();
+
+  if (!posts || posts.length === 0) {
+    return <Empty />;
+  }
 
   return (
     <div className={styles.home}>
       <Header />
       <div className={styles.firstsection}>
-        <Link href={"/pages/posts"} className={styles.bannertop}>
+        <Link href={"/"} className={styles.bannertop}>
           <div className={styles.bannertopleft}>
-            <div>
-              <Image
-                src="https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?q=80&w=1408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Banner 1"
-                layout="fill"
-                objectFit="cover"
-                style={{ borderRadius: "10px" }}
-              />
+            <div style={{ position: "relative", width: "100%", height: "100%" }}>
+              {posts[0]?.coverImage?.url && (
+                <Image
+                  src={posts[0]?.coverImage?.url || ""}
+                  layout="fill"
+                  objectFit="cover"
+                  style={{ borderRadius: "10px" }}
+                  alt="Imagem de capa"
+                />
+              )}
             </div>
           </div>
-          
+
           <div className={styles.bannertopright}>
-            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              itaque vel cupiditate. Nemo, dolorem quod quia eos sequi acusamus
-              obcaecati! Nobis dolores placeat alias blanditiis, deleniti
-              consectetur quam aut doloremque.
-            </p>
+            <h2>{posts[0]?.title}</h2>
+            <p className={styles.subtitle}>{posts[0]?.subtitle}</p>
             <div>
-              <p>Marco Antonio</p>
-              <p>14/Novembro/2024</p>
+              <p>{posts[0]?.author?.name}</p>
+              <p>{format(new Date(posts[0].updatedAt), "dd 'de' MMM 'de' yyyy", { locale: ptBR })}</p>
             </div>
           </div>
         </Link>
       </div>
 
       <div className={styles.cardsfirstsection}>
-        {data?.posts.map((post, index) => (
-          <Cards
-            key={post.id}
-            title={post.title}
-            author={post.author.name}
-            createAt={post.updatedAt}
-            subtitle={post.subtitle}
-            urlImage={post.coverImage.url} 
-          />
-        ))}
+        {posts.map((post, index) => {
+          if (index !== 0) {
+            return (
+              <Cards
+                key={post.id}
+                title={post.title}
+                author={post.author.name}
+                createAt={post.updatedAt}
+                subtitle={post.subtitle}
+                urlImage={post.coverImage.url}
+              />
+            );
+          }
+          return null;
+        })}
       </div>
-
-      <ClientOnly setData={setData} /> {/* Passa a função setData para o componente cliente */}
     </div>
   );
 }

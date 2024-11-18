@@ -12,6 +12,7 @@
     "@apollo/client": "^3.11.10",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+    "date-fns": "^4.1.0",
     "graphql": "^16.9.0",
     "isomorphic-unfetch": "^4.0.2",
     "next": "15.0.3",

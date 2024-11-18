@@ -22,6 +22,15 @@
   overflow: hidden;
 }
 
+.subtitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* número de linhas desejado */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 .bannertopleft {
   position: relative;
   width: 40%;
@@ -56,7 +65,7 @@
   padding: 20px;
   margin-top: 20px;
   height: auto;
-  width: 100%;
+  width: 90%;
 }
 
 .cardsfirstsection img {
@@ -85,6 +94,7 @@
   .bannertop {
     flex-direction: column;
     height: auto;
+    width: 90%;
   }
 
   .bannertopleft,
@@ -105,7 +115,7 @@
 
   /* Ajuste no layout do card */
   .card {
-    width: 90%;
+    width: 100%;
     height: 400px;
   }
 
@@ -115,5 +125,7 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 15px;
     padding: 0px;
+    width: 100%;
+    margin-left: 30px;
   }
 }
